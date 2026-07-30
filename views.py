@@ -68,6 +68,17 @@ def autenticar():
         flash('Usuário não logado.')
         return redirect(url_for('login'))
 
+@app.route('/deletar/<int:id>')
+def deletar(id):
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect(url_for('login'))
+
+    Jogos.query.filter_by(id=id).delete()
+    db.session.commit()
+    flash('Jogo deletado com sucesso!')
+
+    return redirect(url_for('index'))
+
 @app.route('/logout')
 def logout():
     session['usuario_logado'] = None
