@@ -1,7 +1,12 @@
 from flask import render_template, request, redirect, session, flash, url_for, send_from_directory
 from jogoteca import app, db
+<<<<<<< HEAD:views.py
 from models import Usuarios, Jogos
 from helperes import recupera_imagem, deleta_arquivo, FormularioJogo, FormularioUsuario
+=======
+from models import Jogos
+from helpers import recupera_imagem, deleta_arquivo, FormularioJogo
+>>>>>>> melhoria-seguranca:views_game.py
 import time
 
 @app.route('/')
@@ -14,7 +19,11 @@ def novo():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('novo')))
     form = FormularioJogo()
+<<<<<<< HEAD:views.py
     return render_template('novo.html', titulo='Novo Jogo',form=form)
+=======
+    return render_template('novo.html', titulo='Novo Jogo', form=form)
+>>>>>>> melhoria-seguranca:views_game.py
 
 @app.route('/criar', methods=['POST',])
 def criar():
@@ -55,7 +64,10 @@ def editar(id):
     form.console.data = jogo.console
     capa_jogo = recupera_imagem(id)
     return render_template('editar.html', titulo='Editando Jogo', id=id, capa_jogo=capa_jogo, form=form)
+<<<<<<< HEAD:views.py
 
+=======
+>>>>>>> melhoria-seguranca:views_game.py
 
 @app.route('/atualizar', methods=['POST',])
 def atualizar():
@@ -78,6 +90,7 @@ def atualizar():
 
     return redirect(url_for('index'))
 
+<<<<<<< HEAD:views.py
 @app.route('/login')
 def login():
     proxima = request.args.get('proxima')
@@ -98,6 +111,8 @@ def autenticar():
     else:
         flash('Usuário não logado.')
         return redirect(url_for('login'))
+=======
+>>>>>>> melhoria-seguranca:views_game.py
 @app.route('/deletar/<int:id>')
 def deletar(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
@@ -107,12 +122,6 @@ def deletar(id):
     db.session.commit()
     flash('Jogo deletado com sucesso!')
 
-    return redirect(url_for('index'))
-
-@app.route('/logout')
-def logout():
-    session['usuario_logado'] = None
-    flash('Logout efetuado com sucesso!')
     return redirect(url_for('index'))
 
 @app.route('/uploads/<nome_arquivo>')
