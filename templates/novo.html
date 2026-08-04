@@ -14,21 +14,6 @@
 
         <fieldset>
           {{ form.csrf_token() }}
-<<<<<<< HEAD
-          <div class="form-group">
-            {{ form.nome.label(class="form-label") }}
-            {{ form.nome(class="form-control") }}
-          </div>
-          <div class="form-group">
-            {{ form.categoria.label(class="form-label") }}
-            {{ form.categoria(class="form-control") }}
-          </div>
-          <div class="form-group">
-            {{ form.console.label(class="form-label") }}
-            {{ form.console(class="form-control") }}
-          </div>
-          <div class="form-group">
-=======
           <div class="form-group inputBox">
             {{ form.nome.label(class="form-label") }}
             {{ form.nome(class="form-control") }}
@@ -42,7 +27,6 @@
             {{ form.console(class="form-control") }}
           </div>
           <div class="form-group buttons">
->>>>>>> melhoria-seguranca
             {{ form.salvar(class="btn btn-primary") }}
             <a class="btn btn-danger" href="{{ url_for('index') }}">Voltar</a>
           </div>
